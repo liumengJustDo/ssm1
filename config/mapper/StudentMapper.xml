@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 该文件编写mybatis中的mapper接口里面的方法提供对应的sql语句 -->
+<mapper namespace="cn.lm1234.dao.StudentMapper">
+   
+    <select id="selectAl" resultType="cn.lm1234.domain.Student">
+      select * from student limit #{stuno},4;
+    </select>
+       
+       <select id="stucount" resultType="int">
+       select count(*) from student;
+       </select>
+       
+       
+     <select  id="selectById"   resultType="cn.lm1234.domain.Student"   parameterType="int">
+        select * from student where stuno=#{stuno}
+     </select>
+       
+       <update id="update" parameterType="cn.lm1234.domain.Student">
+     update  student set stuname=#{stuName},stuage=#{stuAge},graname=#{graName} where  stuno=#{stuNo}
+    </update>
+    
+     <insert id="addStudent"    parameterType="cn.lm1234.domain.Student">
+    insert into student(stuno,stuname,stuage,graname) values(#{stuNo},#{stuName},#{stuAge},#{graName})
+    </insert>
+    
+    <delete id="deleteById"   parameterType="int">
+      delete from student where stuno=#{stuNo};
+    </delete>
+    
+</mapper>
